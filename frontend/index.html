@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+<title>Degreeverse360 CRM</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%232A3EB1%22/><text x=%2250%22 y=%2268%22 font-size=%2258%22 font-family=%22Arial%22 font-weight=%22800%22 fill=%22white%22 text-anchor=%22middle%22>D</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js" onerror="this.onerror=null;var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js';document.head.appendChild(s);"></script>
+</head>
+<body>
+
+<div id="toast-root" class="toast-root"></div>
+<div id="modal-root"></div>
+
+<!-- ===================== LOGIN SCREEN ===================== -->
+<div id="login-screen" class="login-screen">
+  <div class="login-panel">
+    <div class="login-brand">
+      <div class="brand-mark">D360</div>
+      <h1>Degreeverse<span>360</span></h1>
+      <p>Lead-to-enrollment CRM for education counseling teams.</p>
+    </div>
+    <form id="login-form" class="login-form">
+      <label>Work email
+        <input type="email" id="login-email" required placeholder="you@degreeverse.com" autocomplete="username" />
+      </label>
+      <label>Password
+        <input type="password" id="login-password" required placeholder="••••••••" autocomplete="current-password" />
+      </label>
+      <p id="login-error" class="form-error" hidden></p>
+      <button type="submit" class="btn btn-primary btn-block" id="login-submit">Log in</button>
+    </form>
+    <div class="login-meta">
+      <label class="api-url-label">API server URL
+        <input type="text" id="api-base-input" placeholder="https://your-backend.onrender.com/api" />
+      </label>
+      <button class="btn btn-ghost btn-small" id="save-api-url">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== APP SHELL ===================== -->
+<div id="app-shell" class="app-shell" hidden>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-mark small">D360</div>
+      <span class="brand-word">Degreeverse<span>360</span></span>
+    </div>
+    <nav class="sidebar-nav" id="sidebar-nav">
+      <a href="#/dashboard" data-route="dashboard"><i data-icon="grid"></i>Dashboard</a>
+      <a href="#/leads" data-route="leads"><i data-icon="users"></i>Leads</a>
+      <a href="#/followups" data-route="followups"><i data-icon="clock"></i>Follow-ups</a>
+      <a href="#/reports" data-route="reports" data-role="super_admin,admin"><i data-icon="chart"></i>Reports</a>
+      <a href="#/commissions" data-route="commissions" data-role="super_admin,admin"><i data-icon="chart"></i>Commissions</a>
+      <a href="#/assignment-leads" data-route="assignment-leads"><i data-icon="grid"></i>Assignment Leads</a>
+      <a href="#/counselors" data-route="counselors" data-role="super_admin,admin"><i data-icon="team"></i>Counselors</a>
+      <a href="#/settings" data-route="settings" data-role="super_admin,admin"><i data-icon="cog"></i>Settings</a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-chip" id="user-chip"></div>
+      <button class="btn-logout" id="change-password-btn" style="margin-bottom:6px;">Change password</button>
+      <button class="btn-logout" id="logout-btn">Log out</button>
+    </div>
+  </aside>
+
+  <div class="main-col">
+    <header class="topbar">
+      <button class="hamburger" id="hamburger-btn" aria-label="Menu">☰</button>
+      <div class="topbar-search">
+        <input type="text" id="global-search" placeholder="Search name, mobile, email, lead ID…" />
+      </div>
+      <div class="topbar-actions">
+        <button class="icon-btn" id="notif-btn" aria-label="Notifications">
+          🔔<span class="notif-badge" id="notif-badge" hidden></span>
+        </button>
+        <div id="notif-dropdown" class="notif-dropdown" hidden></div>
+      </div>
+    </header>
+
+    <main class="page-content" id="page-content"><!-- rendered by app.js --></main>
+  </div>
+
+  <!-- Mobile bottom tab bar -->
+  <nav class="bottom-tabs" id="bottom-tabs">
+    <a href="#/dashboard" data-route="dashboard"><i data-icon="grid"></i><span>Home</span></a>
+    <a href="#/leads" data-route="leads"><i data-icon="users"></i><span>Leads</span></a>
+    <a href="#/followups" data-route="followups"><i data-icon="clock"></i><span>Follow-ups</span></a>
+    <a href="#/counselors" data-route="counselors" data-role="super_admin,admin"><i data-icon="team"></i><span>Team</span></a>
+    <a href="#/settings" data-route="settings" data-role="super_admin,admin"><i data-icon="cog"></i><span>Settings</span></a>
+  </nav>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/pages.js"></script>
+<script src="js/leadform.js"></script>
+<script src="js/assignmentLeads.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
